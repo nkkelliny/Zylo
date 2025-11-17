@@ -1,0 +1,471 @@
+{
+  "activeProfileId": "default",
+  "profiles": [
+    {
+      "id": "default",
+      "name": "Default",
+      "createdAt": 1763395451737,
+      "settings": {
+        "searchEngine": "https://duckduckgo.com/?q=",
+        "home": "https://example.com",
+        "userAgent": "default",
+        "adblock": true,
+        "aiEnabled": true,
+        "aiModel": "llama3.1:8b",
+        "aiSystemPrompt": "You are Zylo’s page assistant. Be concise, truthful, and cite page fragments when helpful."
+      },
+      "bookmarks": [
+        {
+          "id": "a58cb57b-528f-4d15-b90c-e5eefc39c124",
+          "title": "Google",
+          "url": "https://www.google.com/",
+          "favicon": "https://www.gstatic.com/images/branding/searchlogo/ico/favicon.ico",
+          "createdAt": 1763395722190
+        }
+      ],
+      "history": [
+        {
+          "id": "206d9cf9-cdd5-4733-8173-51263c93da00",
+          "title": "example.com",
+          "url": "https://example.com/",
+          "favicon": "",
+          "visitedAt": 1763395454996
+        },
+        {
+          "id": "0760d9a4-8597-4415-b219-7dce010b23b0",
+          "title": "example.com",
+          "url": "https://example.com/",
+          "favicon": "",
+          "visitedAt": 1763395545232
+        },
+        {
+          "id": "5254ac7b-a794-48f0-8f1f-d4447469bdb1",
+          "title": "about:blank",
+          "url": "about:blank",
+          "favicon": "",
+          "visitedAt": 1763395548807
+        },
+        {
+          "id": "b421afe0-ae6c-4f68-88bd-5c8e03399e15",
+          "title": "about:blank",
+          "url": "about:blank",
+          "favicon": "null/favicon.ico",
+          "visitedAt": 1763395548829
+        },
+        {
+          "id": "00593c98-cc45-4249-8c04-c65c6dc84401",
+          "title": "example.com",
+          "url": "https://example.com/",
+          "favicon": "",
+          "visitedAt": 1763395697664
+        },
+        {
+          "id": "f6c1c3c1-4521-4be0-bc0a-c88b6f3da6f9",
+          "title": "about:blank",
+          "url": "about:blank",
+          "favicon": "",
+          "visitedAt": 1763395703625
+        },
+        {
+          "id": "1616b893-0e32-4c54-b769-1337c91b1794",
+          "title": "about:blank",
+          "url": "about:blank",
+          "favicon": "null/favicon.ico",
+          "visitedAt": 1763395703642
+        },
+        {
+          "id": "f6d20641-d60a-4ad3-a94b-9c4ae928fcbe",
+          "title": "example.com",
+          "url": "https://example.com/",
+          "favicon": "",
+          "visitedAt": 1763395706991
+        },
+        {
+          "id": "25da0587-4556-423c-844f-da579cb26a80",
+          "title": "google.com",
+          "url": "https://www.google.com/",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763395714848
+        },
+        {
+          "id": "c3669172-aa6a-48ce-b365-a154ffc41681",
+          "title": "Google",
+          "url": "https://www.google.com/",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763395715084
+        },
+        {
+          "id": "0747d7c6-2aa1-426c-96d4-d7a7fbb5275b",
+          "title": "google.com/search?q=ninja+gaiden+wallpaper&sca_esv=9be0e29e8e63d6e0&source=hp&ei=gkgbacO7Btv9p84Pla-a2AM&iflsig=AOw8s4IAAAAAaRtWksFNZtJ1RVQkmyNDI1K0eiqJ0CWt&ved=0ahUKEwjDhI35yPmQAxXb_skDHZWXBjsQ4dUDCBA&uact=5&oq=ninja+gaiden+wallpaper&gs_lp=Egdnd3Mtd2l6IhZuaW5qYSBnYWlkZW4gd2FsbHBhcGVyMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB5IqURQzgJY9UJwFXgAkAEAmAF4oAHBCaoBBDIzLjG4AQPIAQD4AQGYAi2gApoLqAIKwgIKEAAYAxiPARjqAsICChAuGAMYjwEY6gLCAgsQLhiABBixAxiDAcICCxAAGIAEGLEDGIMBwgIOEAAYgAQYigUYsQMYgwHCAhEQLhiABBixAxiDARjHARjRA8ICDhAuGIAEGLEDGIMBGOUEwgIOEC4YgAQYigUYsQMYgwHCAggQLhiABBixA8ICDhAuGIAEGMcBGK8BGI4FwgIIEAAYgAQYsQPCAggQLhixAxiABMICCxAuGNQCGLEDGIAEwgIMEC4YChgLGLEDGIAEwgIMEC4YgAQYChgLGLEDwgIJEAAYgAQYChgLwgIPEC4YChgLGNQCGLEDGIAEwgIFEC4YgASYAw6SBwQ0NC4xoAehswKyBwQyMy4xuAe-CsIHCTAuMTkuMjQuMsgHpwE&sclient=gws-wiz",
+          "url": "https://www.google.com/search?q=ninja+gaiden+wallpaper&sca_esv=9be0e29e8e63d6e0&source=hp&ei=gkgbacO7Btv9p84Pla-a2AM&iflsig=AOw8s4IAAAAAaRtWksFNZtJ1RVQkmyNDI1K0eiqJ0CWt&ved=0ahUKEwjDhI35yPmQAxXb_skDHZWXBjsQ4dUDCBA&uact=5&oq=ninja+gaiden+wallpaper&gs_lp=Egdnd3Mtd2l6IhZuaW5qYSBnYWlkZW4gd2FsbHBhcGVyMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB5IqURQzgJY9UJwFXgAkAEAmAF4oAHBCaoBBDIzLjG4AQPIAQD4AQGYAi2gApoLqAIKwgIKEAAYAxiPARjqAsICChAuGAMYjwEY6gLCAgsQLhiABBixAxiDAcICCxAAGIAEGLEDGIMBwgIOEAAYgAQYigUYsQMYgwHCAhEQLhiABBixAxiDARjHARjRA8ICDhAuGIAEGLEDGIMBGOUEwgIOEC4YgAQYigUYsQMYgwHCAggQLhiABBixA8ICDhAuGIAEGMcBGK8BGI4FwgIIEAAYgAQYsQPCAggQLhixAxiABMICCxAuGNQCGLEDGIAEwgIMEC4YChgLGLEDGIAEwgIMEC4YgAQYChgLGLEDwgIJEAAYgAQYChgLwgIPEC4YChgLGNQCGLEDGIAEwgIFEC4YgASYAw6SBwQ0NC4xoAehswKyBwQyMy4xuAe-CsIHCTAuMTkuMjQuMsgHpwE&sclient=gws-wiz",
+          "favicon": "https://www.gstatic.com/images/branding/searchlogo/ico/favicon.ico",
+          "visitedAt": 1763395734432
+        },
+        {
+          "id": "562d0574-aa69-4643-be65-236dfd5e62a3",
+          "title": "ninja gaiden wallpaper - Google Search",
+          "url": "https://www.google.com/search?q=ninja+gaiden+wallpaper&sca_esv=9be0e29e8e63d6e0&source=hp&ei=gkgbacO7Btv9p84Pla-a2AM&iflsig=AOw8s4IAAAAAaRtWksFNZtJ1RVQkmyNDI1K0eiqJ0CWt&ved=0ahUKEwjDhI35yPmQAxXb_skDHZWXBjsQ4dUDCBA&uact=5&oq=ninja+gaiden+wallpaper&gs_lp=Egdnd3Mtd2l6IhZuaW5qYSBnYWlkZW4gd2FsbHBhcGVyMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB5IqURQzgJY9UJwFXgAkAEAmAF4oAHBCaoBBDIzLjG4AQPIAQD4AQGYAi2gApoLqAIKwgIKEAAYAxiPARjqAsICChAuGAMYjwEY6gLCAgsQLhiABBixAxiDAcICCxAAGIAEGLEDGIMBwgIOEAAYgAQYigUYsQMYgwHCAhEQLhiABBixAxiDARjHARjRA8ICDhAuGIAEGLEDGIMBGOUEwgIOEC4YgAQYigUYsQMYgwHCAggQLhiABBixA8ICDhAuGIAEGMcBGK8BGI4FwgIIEAAYgAQYsQPCAggQLhixAxiABMICCxAuGNQCGLEDGIAEwgIMEC4YChgLGLEDGIAEwgIMEC4YgAQYChgLGLEDwgIJEAAYgAQYChgLwgIPEC4YChgLGNQCGLEDGIAEwgIFEC4YgASYAw6SBwQ0NC4xoAehswKyBwQyMy4xuAe-CsIHCTAuMTkuMjQuMsgHpwE&sclient=gws-wiz",
+          "favicon": "https://www.gstatic.com/images/branding/searchlogo/ico/favicon.ico",
+          "visitedAt": 1763395734455
+        },
+        {
+          "id": "4fb96d7b-8e3f-4caa-98ad-32ea90ec70aa",
+          "title": "ninja gaiden wallpaper - Google Search",
+          "url": "https://www.google.com/search?q=ninja+gaiden+wallpaper&sca_esv=9be0e29e8e63d6e0&source=hp&ei=gkgbacO7Btv9p84Pla-a2AM&iflsig=AOw8s4IAAAAAaRtWksFNZtJ1RVQkmyNDI1K0eiqJ0CWt&ved=0ahUKEwjDhI35yPmQAxXb_skDHZWXBjsQ4dUDCBA&uact=5&oq=ninja+gaiden+wallpaper&gs_lp=Egdnd3Mtd2l6IhZuaW5qYSBnYWlkZW4gd2FsbHBhcGVyMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB5IqURQzgJY9UJwFXgAkAEAmAF4oAHBCaoBBDIzLjG4AQPIAQD4AQGYAi2gApoLqAIKwgIKEAAYAxiPARjqAsICChAuGAMYjwEY6gLCAgsQLhiABBixAxiDAcICCxAAGIAEGLEDGIMBwgIOEAAYgAQYigUYsQMYgwHCAhEQLhiABBixAxiDARjHARjRA8ICDhAuGIAEGLEDGIMBGOUEwgIOEC4YgAQYigUYsQMYgwHCAggQLhiABBixA8ICDhAuGIAEGMcBGK8BGI4FwgIIEAAYgAQYsQPCAggQLhixAxiABMICCxAuGNQCGLEDGIAEwgIMEC4YChgLGLEDGIAEwgIMEC4YgAQYChgLGLEDwgIJEAAYgAQYChgLwgIPEC4YChgLGNQCGLEDGIAEwgIFEC4YgASYAw6SBwQ0NC4xoAehswKyBwQyMy4xuAe-CsIHCTAuMTkuMjQuMsgHpwE&sclient=gws-wiz",
+          "favicon": "https://www.gstatic.com/images/branding/searchlogo/ico/favicon.ico",
+          "visitedAt": 1763395734854
+        },
+        {
+          "id": "22933562-bbb8-4e2a-8cfc-265de53c43f1",
+          "title": "ninja gaiden wallpaper - Google Search",
+          "url": "https://www.google.com/search?q=ninja+gaiden+wallpaper&sca_esv=9be0e29e8e63d6e0&source=hp&ei=gkgbacO7Btv9p84Pla-a2AM&iflsig=AOw8s4IAAAAAaRtWksFNZtJ1RVQkmyNDI1K0eiqJ0CWt&ved=0ahUKEwjDhI35yPmQAxXb_skDHZWXBjsQ4dUDCBA&uact=5&oq=ninja+gaiden+wallpaper&gs_lp=Egdnd3Mtd2l6IhZuaW5qYSBnYWlkZW4gd2FsbHBhcGVyMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB5IqURQzgJY9UJwFXgAkAEAmAF4oAHBCaoBBDIzLjG4AQPIAQD4AQGYAi2gApoLqAIKwgIKEAAYAxiPARjqAsICChAuGAMYjwEY6gLCAgsQLhiABBixAxiDAcICCxAAGIAEGLEDGIMBwgIOEAAYgAQYigUYsQMYgwHCAhEQLhiABBixAxiDARjHARjRA8ICDhAuGIAEGLEDGIMBGOUEwgIOEC4YgAQYigUYsQMYgwHCAggQLhiABBixA8ICDhAuGIAEGMcBGK8BGI4FwgIIEAAYgAQYsQPCAggQLhixAxiABMICCxAuGNQCGLEDGIAEwgIMEC4YChgLGLEDGIAEwgIMEC4YgAQYChgLGLEDwgIJEAAYgAQYChgLwgIPEC4YChgLGNQCGLEDGIAEwgIFEC4YgASYAw6SBwQ0NC4xoAehswKyBwQyMy4xuAe-CsIHCTAuMTkuMjQuMsgHpwE&sclient=gws-wiz#vhid=RH1pdNgPnx5rGM&vssid=_lUgbaZilLIyiptQP4M-LiAc_52",
+          "favicon": "https://www.gstatic.com/images/branding/searchlogo/ico/favicon.ico",
+          "visitedAt": 1763395736930
+        },
+        {
+          "id": "300dc6b6-a078-49b5-8479-c6a29f44c8a9",
+          "title": "ninja gaiden wallpaper - Google Search",
+          "url": "https://www.google.com/search?q=ninja+gaiden+wallpaper&sca_esv=9be0e29e8e63d6e0&source=hp&ei=gkgbacO7Btv9p84Pla-a2AM&iflsig=AOw8s4IAAAAAaRtWksFNZtJ1RVQkmyNDI1K0eiqJ0CWt&ved=0ahUKEwjDhI35yPmQAxXb_skDHZWXBjsQ4dUDCBA&uact=5&oq=ninja+gaiden+wallpaper&gs_lp=Egdnd3Mtd2l6IhZuaW5qYSBnYWlkZW4gd2FsbHBhcGVyMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB5IqURQzgJY9UJwFXgAkAEAmAF4oAHBCaoBBDIzLjG4AQPIAQD4AQGYAi2gApoLqAIKwgIKEAAYAxiPARjqAsICChAuGAMYjwEY6gLCAgsQLhiABBixAxiDAcICCxAAGIAEGLEDGIMBwgIOEAAYgAQYigUYsQMYgwHCAhEQLhiABBixAxiDARjHARjRA8ICDhAuGIAEGLEDGIMBGOUEwgIOEC4YgAQYigUYsQMYgwHCAggQLhiABBixA8ICDhAuGIAEGMcBGK8BGI4FwgIIEAAYgAQYsQPCAggQLhixAxiABMICCxAuGNQCGLEDGIAEwgIMEC4YChgLGLEDGIAEwgIMEC4YgAQYChgLGLEDwgIJEAAYgAQYChgLwgIPEC4YChgLGNQCGLEDGIAEwgIFEC4YgASYAw6SBwQ0NC4xoAehswKyBwQyMy4xuAe-CsIHCTAuMTkuMjQuMsgHpwE&sclient=gws-wiz#vhid=RH1pdNgPnx5rGM&vssid=_lUgbaZilLIyiptQP4M-LiAc_52",
+          "favicon": "https://www.gstatic.com/images/branding/searchlogo/ico/favicon.ico",
+          "visitedAt": 1763395753462
+        },
+        {
+          "id": "b1dc6e66-ff75-4f70-99aa-0535aaf47ab5",
+          "title": "ninja gaiden wallpaper - Google Search",
+          "url": "https://www.google.com/search?q=ninja+gaiden+wallpaper&sca_esv=9be0e29e8e63d6e0&source=hp&ei=gkgbacO7Btv9p84Pla-a2AM&iflsig=AOw8s4IAAAAAaRtWksFNZtJ1RVQkmyNDI1K0eiqJ0CWt&ved=0ahUKEwjDhI35yPmQAxXb_skDHZWXBjsQ4dUDCBA&uact=5&oq=ninja+gaiden+wallpaper&gs_lp=Egdnd3Mtd2l6IhZuaW5qYSBnYWlkZW4gd2FsbHBhcGVyMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB5IqURQzgJY9UJwFXgAkAEAmAF4oAHBCaoBBDIzLjG4AQPIAQD4AQGYAi2gApoLqAIKwgIKEAAYAxiPARjqAsICChAuGAMYjwEY6gLCAgsQLhiABBixAxiDAcICCxAAGIAEGLEDGIMBwgIOEAAYgAQYigUYsQMYgwHCAhEQLhiABBixAxiDARjHARjRA8ICDhAuGIAEGLEDGIMBGOUEwgIOEC4YgAQYigUYsQMYgwHCAggQLhiABBixA8ICDhAuGIAEGMcBGK8BGI4FwgIIEAAYgAQYsQPCAggQLhixAxiABMICCxAuGNQCGLEDGIAEwgIMEC4YChgLGLEDGIAEwgIMEC4YgAQYChgLGLEDwgIJEAAYgAQYChgLwgIPEC4YChgLGNQCGLEDGIAEwgIFEC4YgASYAw6SBwQ0NC4xoAehswKyBwQyMy4xuAe-CsIHCTAuMTkuMjQuMsgHpwE&sclient=gws-wiz#vhid=RH1pdNgPnx5rGM&vssid=_lUgbaZilLIyiptQP4M-LiAc_52",
+          "favicon": "https://www.gstatic.com/images/branding/searchlogo/ico/favicon.ico",
+          "visitedAt": 1763395753473
+        },
+        {
+          "id": "5abdc6b5-229e-4801-b35d-ae23001180ea",
+          "title": "example.com",
+          "url": "https://example.com/",
+          "favicon": "",
+          "visitedAt": 1763396010016
+        },
+        {
+          "id": "befad862-0518-4cdb-8c41-b7a73036742b",
+          "title": "duckduckgo.com/?q=ninja gaiden wallpaper",
+          "url": "https://duckduckgo.com/?q=ninja%20gaiden%20wallpaper",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763396025671
+        },
+        {
+          "id": "930fa5bf-b533-4900-b040-2daae017efd0",
+          "title": "ninja gaiden wallpaper at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=ninja%20gaiden%20wallpaper",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763396025941
+        },
+        {
+          "id": "12486071-e189-49c1-aa0d-31f61986cdde",
+          "title": "ninja gaiden wallpaper at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=ninja+gaiden+wallpaper",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763396025979
+        },
+        {
+          "id": "2993527f-0ddf-4d4d-b8dc-1f3a2a5fe356",
+          "title": "ninja gaiden wallpaper at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=ninja+gaiden+wallpaper&ia=web",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763396026528
+        },
+        {
+          "id": "dad6641c-bd0f-4398-abc5-ab3dd99b98fa",
+          "title": "ninja gaiden wallpaper at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=ninja+gaiden+wallpaper&ia=web",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763396026680
+        },
+        {
+          "id": "05bf5343-0192-472d-a43c-ad165d585240",
+          "title": "ninja gaiden wallpaper at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=ninja+gaiden+wallpaper&ia=images&iax=images&iai=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F91698.jpg",
+          "favicon": "https://duckduckgo.com/favicon.ico",
+          "visitedAt": 1763396027555
+        },
+        {
+          "id": "751e227e-fac0-42a8-b5ef-5b1c43a32f53",
+          "title": "ninja gaiden wallpaper at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=ninja+gaiden+wallpaper&ia=images&iax=images&iai=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F91698.jpg",
+          "favicon": "https://duckduckgo.com/favicon.ico",
+          "visitedAt": 1763396027606
+        },
+        {
+          "id": "087acdac-baa6-4b34-af6f-a35bb776f0fe",
+          "title": "example.com",
+          "url": "https://example.com/",
+          "favicon": "",
+          "visitedAt": 1763396043852
+        },
+        {
+          "id": "32970a7a-b5f3-4036-a8f3-a71a6e9ccf76",
+          "title": "example.com",
+          "url": "https://example.com/",
+          "favicon": "",
+          "visitedAt": 1763396305429
+        },
+        {
+          "id": "4cabc73e-6140-4b29-bd71-93d51e17447d",
+          "title": "duckduckgo.com/?q=ninja gaiden wallpaper",
+          "url": "https://duckduckgo.com/?q=ninja%20gaiden%20wallpaper",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763396313546
+        },
+        {
+          "id": "72efd559-a5b3-4072-aa09-56837efdac74",
+          "title": "ninja gaiden wallpaper at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=ninja%20gaiden%20wallpaper",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763396313674
+        },
+        {
+          "id": "f3df8eb0-84bb-48ec-a565-b288896715bc",
+          "title": "ninja gaiden wallpaper at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=ninja+gaiden+wallpaper",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763396313699
+        },
+        {
+          "id": "2a4eb60e-9d48-470b-a33f-d06684a5eb7c",
+          "title": "ninja gaiden wallpaper at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=ninja+gaiden+wallpaper",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763396313702
+        },
+        {
+          "id": "bcae04bd-d9f2-4815-bd4c-d548ff6d6b57",
+          "title": "ninja gaiden wallpaper at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=ninja+gaiden+wallpaper&ia=web",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763396314521
+        },
+        {
+          "id": "97033970-0b90-4315-8a98-a07956f1ab0a",
+          "title": "ninja gaiden wallpaper at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=ninja+gaiden+wallpaper&ia=web",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763396314638
+        },
+        {
+          "id": "ca2a2c41-7bd7-4446-9768-5345373160df",
+          "title": "ninja gaiden wallpaper at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=ninja+gaiden+wallpaper&ia=images&iax=images",
+          "favicon": "https://duckduckgo.com/favicon.ico",
+          "visitedAt": 1763396317089
+        },
+        {
+          "id": "df4d7f5f-80d0-46a1-a70f-91eab7de2d7e",
+          "title": "ninja gaiden wallpaper at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=ninja+gaiden+wallpaper&ia=images&iax=images&iai=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F91698.jpg",
+          "favicon": "https://duckduckgo.com/favicon.ico",
+          "visitedAt": 1763396319674
+        },
+        {
+          "id": "95402b53-9118-4f25-a472-de2a96f1c684",
+          "title": "example.com",
+          "url": "https://example.com/",
+          "favicon": "",
+          "visitedAt": 1763396455576
+        },
+        {
+          "id": "14b46c1f-7330-4b00-b17e-e66918a79c39",
+          "title": "example.com",
+          "url": "https://example.com/",
+          "favicon": "",
+          "visitedAt": 1763396510568
+        },
+        {
+          "id": "991c780c-6b0b-4e51-b8e7-e922ed8c87cf",
+          "title": "example.com",
+          "url": "https://example.com/",
+          "favicon": "",
+          "visitedAt": 1763397266105
+        },
+        {
+          "id": "39db8018-9a2c-41bf-a307-4cab8fa8aa80",
+          "title": "duckduckgo.com/?q=test webcam",
+          "url": "https://duckduckgo.com/?q=test%20webcam",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763397282635
+        },
+        {
+          "id": "4a7dd5d2-8499-4dee-92f9-30a8f77a516d",
+          "title": "test webcam at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=test%20webcam",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763397282790
+        },
+        {
+          "id": "793ab67b-a23f-42e9-b2d1-057366c31785",
+          "title": "test webcam at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=test+webcam",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763397282840
+        },
+        {
+          "id": "eee60462-2587-4708-acf9-b2c4b235363f",
+          "title": "test webcam at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=test+webcam",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763397283966
+        },
+        {
+          "id": "3c87c8a1-c915-4b33-a5e8-8df4ec9156c2",
+          "title": "test webcam at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=test+webcam&ia=web",
+          "favicon": "https://duckduckgo.com/favicon.ico",
+          "visitedAt": 1763397283988
+        },
+        {
+          "id": "6df084f5-3e4c-40e5-a77e-dac445f0a347",
+          "title": "test webcam at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=test+webcam&ia=web",
+          "favicon": "https://duckduckgo.com/favicon.ico",
+          "visitedAt": 1763397284795
+        },
+        {
+          "id": "a04424ef-b8cc-46ad-be9e-aea4039a1f58",
+          "title": "webcamtests.com",
+          "url": "https://webcamtests.com/",
+          "favicon": "https://duckduckgo.com/favicon.ico",
+          "visitedAt": 1763397285223
+        },
+        {
+          "id": "c39163cc-4558-4859-9e54-8e4255f71f54",
+          "title": "Webcam Test",
+          "url": "https://webcamtests.com/",
+          "favicon": "https://static.webcamtests.com/theme/img/favicon.ico",
+          "visitedAt": 1763397322471
+        },
+        {
+          "id": "81eb8bee-ae41-46b7-ac3b-5fff99e319db",
+          "title": "example.com",
+          "url": "https://example.com/",
+          "favicon": "",
+          "visitedAt": 1763397359699
+        },
+        {
+          "id": "7656c002-703e-49bf-9ac7-12104fb64dca",
+          "title": "example.com",
+          "url": "https://example.com/",
+          "favicon": "",
+          "visitedAt": 1763397716412
+        },
+        {
+          "id": "e86ff89f-73fd-47d3-8f47-442802651297",
+          "title": "duckduckgo.com/?q=test webcam",
+          "url": "https://duckduckgo.com/?q=test%20webcam",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763397724526
+        },
+        {
+          "id": "a9d768b0-e7a7-43c8-8160-3dbf5b3c7cf2",
+          "title": "test webcam at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=test%20webcam",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763397724645
+        },
+        {
+          "id": "959066b8-383e-489c-aece-5ad96c1d95fc",
+          "title": "test webcam at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=test+webcam",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763397724687
+        },
+        {
+          "id": "71ed5c23-78c0-475e-a0a2-5ed66f42069d",
+          "title": "test webcam at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=test+webcam",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763397724693
+        },
+        {
+          "id": "1d8e9659-98b4-4fa1-8ba1-9afa1dbd0190",
+          "title": "test webcam at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=test+webcam",
+          "favicon": "https://example.com/favicon.ico",
+          "visitedAt": 1763397725492
+        },
+        {
+          "id": "5f3b66e7-d8aa-456c-9550-df07ddbe92a5",
+          "title": "test webcam at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=test+webcam&ia=web",
+          "favicon": "https://duckduckgo.com/favicon.ico",
+          "visitedAt": 1763397725523
+        },
+        {
+          "id": "aab2b382-286b-4d9f-bd2c-dd13fac42dfc",
+          "title": "test webcam at DuckDuckGo",
+          "url": "https://duckduckgo.com/?q=test+webcam&ia=web",
+          "favicon": "https://duckduckgo.com/favicon.ico",
+          "visitedAt": 1763397726694
+        },
+        {
+          "id": "464cb45a-db7c-450c-9c35-70d43e031fbb",
+          "title": "webcamtests.com",
+          "url": "https://webcamtests.com/",
+          "favicon": "https://duckduckgo.com/favicon.ico",
+          "visitedAt": 1763397727211
+        },
+        {
+          "id": "a38a0335-235d-49db-8e25-9c694342db53",
+          "title": "Webcam Test",
+          "url": "https://webcamtests.com/",
+          "favicon": "https://static.webcamtests.com/theme/img/favicon.ico",
+          "visitedAt": 1763397771369
+        },
+        {
+          "id": "6024df37-e006-4b25-b351-d520a4145c1d",
+          "title": "Webcam Test",
+          "url": "https://webcamtests.com/",
+          "favicon": "https://static.webcamtests.com/theme/img/favicon.ico",
+          "visitedAt": 1763397783265
+        },
+        {
+          "id": "ce865724-b64f-42eb-a800-60ba6e747daf",
+          "title": "Webcam Test",
+          "url": "https://webcamtests.com/",
+          "favicon": "https://static.webcamtests.com/theme/img/favicon.ico",
+          "visitedAt": 1763397805762
+        },
+        {
+          "id": "0f4652ae-e7dd-4a4d-a698-7ec5961217b4",
+          "title": "example.com",
+          "url": "https://example.com/",
+          "favicon": "",
+          "visitedAt": 1763397853186
+        }
+      ],
+      "downloads": [
+        {
+          "id": "cd7fabce-993b-488c-ad93-db1621dd1e05",
+          "fileName": "91698-1808623236.jpg",
+          "filePath": "",
+          "url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F91698.jpg&f=1&nofb=1&ipt=07ffbc0cb4dc9f029aa2efb5d10e7635c9c193c6dd81e1dc86f6482b1fee144d",
+          "size": 0,
+          "state": "completed",
+          "at": 1763396325938
+        },
+        {
+          "id": "5f173eac-1388-4380-bb7f-ae01b6e2d9aa",
+          "fileName": "91698-1808623236.jpg",
+          "filePath": "",
+          "url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F91698.jpg&f=1&nofb=1&ipt=07ffbc0cb4dc9f029aa2efb5d10e7635c9c193c6dd81e1dc86f6482b1fee144d",
+          "size": 0,
+          "state": "completed",
+          "at": 1763396358655
+        }
+      ],
+      "permissions": {
+        "https://webcamtests.com": {
+          "camera": "ask",
+          "microphone": "ask",
+          "geolocation": "ask",
+          "notifications": "ask"
+        }
+      }
+    }
+  ]
+}

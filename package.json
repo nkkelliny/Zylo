@@ -1,0 +1,59 @@
+{
+  "name": "zylo-browser",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Zylo — Electron + Express browser with profiles, sync, permissions, downloads shelf, and local Ollama AI.",
+  "main": "src/main.js",
+  "scripts": {
+    "dev": "concurrently -k \"npm:serve\" \"npm:electron\"",
+    "serve": "node ./src/server.js",
+    "electron": "wait-on tcp:3001 && electron .",
+    "start": "npm run dev",
+
+    "dist": "electron-builder",
+    "pack": "electron-builder --dir"
+  },
+  "dependencies": {
+    "concurrently": "^9.0.0",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "lowdb": "^7.0.1",
+    "mime": "^4.0.1",
+    "wait-on": "^7.2.0"
+  },
+  "devDependencies": {
+    "electron": "^31.3.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.zylo.browser",
+    "productName": "Zylo Browser",
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+
+    "win": {
+      "target": "nsis",
+      "icon": "src/renderer/assets/icons/win/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    },
+
+    "mac": {
+      "target": "dmg",
+      "icon": "src/renderer/assets/icons/mac/512x512.png"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "src/renderer/assets/icons/linux"
+    }
+  }
+}

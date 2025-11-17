@@ -1,0 +1,311 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Zylo</title>
+
+  <!-- CSP updated to allow Bootstrap/CDN assets -->
+  <meta http-equiv="Content-Security-Policy"
+        content="
+          default-src 'self';
+          img-src 'self' data: blob: https:;
+          media-src *;
+          style-src 'self' 'unsafe-inline';
+          script-src 'self';
+          font-src 'self';
+          connect-src 'self' http://localhost:3001;
+          frame-src *;
+          child-src *;
+        ">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="./assets/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Optional: Bootstrap Icons -->
+  <link href="./assets/css/bootstrap-icons.css" rel="stylesheet"/>
+
+  <!-- Bootstrap 5 JS (includes Popper) -->
+  <script src="./assets/js/bootstrap.bundle.min.js"></script>
+  <!-- Your custom CSS (keep for app-specific rules like .active webview) -->
+  <link rel="stylesheet" href="./assets/css/style.css"/>
+  <link rel="icon" type="image/png" href="./assets/zylo-logo.png" />
+  <style>
+    .perm-modal {
+    position: fixed;
+    z-index: 999999;
+    inset: 0;
+    display: flex;
+    background: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+  }
+  .perm-modal.hidden {
+    display: none;
+  }
+  .perm-modal-content {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    width: 350px;
+    text-align: center;
+  }
+  .perm-modal-buttons button {
+    margin: 8px;
+    padding: 8px 20px;
+  }
+  </style>
+</head>
+<body class="text-body">
+
+  <!-- Toolbar -->
+  <header class="toolbar d-flex align-items-center gap-2 p-2 border-bottom bg-light">
+    <div class="brand fw-bold me-1 d-flex align-items-center gap-2">
+      <img src="./assets/zylo-logo.png" alt="Zylo" style="height:24px; width:auto;" />
+      <span>Zylo</span>
+    </div>
+
+    <div class="nav d-flex align-items-center gap-1">
+      <button id="back"     title="Back"    class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i></button>
+      <button id="forward"  title="Forward" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-right"></i></button>
+      <button id="reload"   title="Reload"  class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-clockwise"></i></button>
+      <button id="stop"     title="Stop"    class="btn btn-outline-secondary btn-sm"><i class="bi bi-x-lg"></i></button>
+    </div>
+
+    <div class="addr d-flex align-items-center gap-2 flex-fill">
+      <span id="lock" title="Security" class="text-muted">⚪</span>
+      <input id="url" placeholder="Search or enter address" class="form-control form-control-sm"/>
+    </div>
+
+    <div class="actions d-flex align-items-center gap-1">
+      <select id="profile-switch" class="form-select form-select-sm"></select>
+      <button id="home"     title="Home"           class="btn btn-outline-secondary btn-sm"><i class="bi bi-house-door"></i></button>
+      <button id="find"     title="Find in page"   class="btn btn-outline-secondary btn-sm"><i class="bi bi-search"></i></button>
+      <button id="zoomOut"  title="Zoom out"       class="btn btn-outline-secondary btn-sm">−</button>
+      <button id="zoomReset" title="100%"          class="btn btn-outline-secondary btn-sm text-muted">100%</button>
+      <button id="zoomIn"   title="Zoom in"        class="btn btn-outline-secondary btn-sm">+</button>
+      <button id="devtools" title="DevTools"       class="btn btn-outline-secondary btn-sm"><i class="bi bi-tools"></i></button>
+      <button id="incog"    style="display: none;" title="New Window"      class="btn btn-outline-secondary btn-sm"><i class="bi bi-window"></i></button>
+      <button id="newwin"    title="New Window"      class="btn btn-outline-secondary btn-sm"><i class="bi bi-window"></i></button>
+      <button id="ai"       title="Zylo AI (Ollama)" class="btn btn-outline-secondary btn-sm"><i class="bi bi-stars"></i></button>
+      <button id="menu"     title="Menu"           class="btn btn-outline-secondary btn-sm"><i class="bi bi-list"></i></button>
+    </div>
+  </header>
+
+  <!-- Tabs strip -->
+  <div class="tabs d-flex align-items-center gap-1 px-2 py-1 border-bottom bg-light">
+    <div id="tabs" class="d-flex align-items-stretch gap-1 px-1 overflow-auto w-100">
+      <!-- tabs injected here by JS; each tab element already has class 'tab' -->
+    </div>
+    <button id="newTab" class="btn btn-outline-primary btn-sm ms-auto"><i class="bi bi-plus-lg"></i></button>
+  </div>
+
+  <div id="panels" class="position-relative">
+    <!-- Side panel -->
+    <aside id="sidepanel" class="hidden position-absolute start-0 bg-white border-end overflow-auto"
+           style="top:88px; bottom:48px; width:515px; height: 85vh; z-index:10000;">
+      <div class="panel-tabs d-flex gap-1 p-2 border-bottom sticky-top bg-white">
+        <button data-panel="bookmarks"   class="btn btn-light btn-sm border">Bookmarks</button>
+        <button data-panel="history"     class="btn btn-light btn-sm border">History</button>
+        <button data-panel="downloads"   class="btn btn-light btn-sm border">Downloads</button>
+        <button data-panel="permissions" class="btn btn-light btn-sm border">Permissions</button>
+        <button data-panel="settings"    class="btn btn-light btn-sm border">Settings</button>
+        <button data-panel="sync"        class="btn btn-light btn-sm border">Sync</button>
+        <button data-panel="ai"          class="btn btn-light btn-sm border">AI</button>
+      </div>
+
+      <div class="panel p-3" id="panel-bookmarks"></div>
+      <div class="panel p-3 hidden" id="panel-history"></div>
+      <div class="panel p-3 hidden" id="panel-downloads"></div>
+      <div class="panel p-3 hidden" id="panel-permissions">
+  <h3 class="h6 fw-semibold mb-3">Permissions</h3>
+
+  <!-- Current site controls (these are always visible) -->
+  <div class="mb-3 border rounded p-2 bg-light">
+    <div class="small text-muted mb-1">Current site:</div>
+    <div id="perm-current-origin" class="fw-semibold">(no site selected)</div>
+
+    <div class="row g-2 mt-2">
+      <div class="col-12">
+        <label class="form-label mb-1 small">Camera</label>
+        <select id="perm-camera" class="form-select form-select-sm">
+          <option value="ask">Ask</option>
+          <option value="allow">Allow</option>
+          <option value="deny">Deny</option>
+        </select>
+      </div>
+
+      <div class="col-12">
+        <label class="form-label mb-1 small">Microphone</label>
+        <select id="perm-microphone" class="form-select form-select-sm">
+          <option value="ask">Ask</option>
+          <option value="allow">Allow</option>
+          <option value="deny">Deny</option>
+        </select>
+      </div>
+
+      <div class="col-12 mt-2 mt-md-0">
+        <label class="form-label mb-1 small">Geolocation</label>
+        <select id="perm-geolocation" class="form-select form-select-sm">
+          <option value="ask">Ask</option>
+          <option value="allow">Allow</option>
+          <option value="deny">Deny</option>
+        </select>
+      </div>
+
+      <div class="col-12 mt-2 mt-md-0">
+        <label class="form-label mb-1 small">Notifications</label>
+        <select id="perm-notifications" class="form-select form-select-sm">
+          <option value="ask">Ask</option>
+          <option value="allow">Allow</option>
+          <option value="deny">Deny</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mt-2 d-flex gap-2">
+      <button id="perm-save-current"  class="btn btn-outline-secondary btn-sm">
+        Save for this site
+      </button>
+      <button id="perm-reset-current" class="btn btn-outline-secondary btn-sm">
+        Reset this site
+      </button>
+      <button id="perm-reset-all"     class="btn btn-outline-secondary btn-sm ms-auto">
+        Reset all
+      </button>
+    </div>
+  </div>
+
+  <!-- Optional: list of known sites & their permissions (read-only summary) -->
+  <div>
+    <div class="small text-muted mb-1">Saved origins:</div>
+    <div id="perm-sites-list" class="small">
+      <!-- filled by renderer.js -->
+    </div>
+  </div>
+</div>
+
+<!-- Permission Request Modal -->
+<div id="perm-request-modal" class="perm-modal hidden">
+  <div class="perm-modal-content">
+    <h3 id="perm-modal-title">Permission Request</h3>
+    <p id="perm-modal-text"></p>
+    <div class="perm-modal-buttons">
+      <button id="perm-modal-allow" class="btn btn-success">Allow</button>
+      <button id="perm-modal-deny" class="btn btn-danger">Deny</button>
+    </div>
+  </div>
+</div>
+
+
+      <div class="panel p-3 hidden" id="panel-settings">
+        <h3 class="h6 fw-semibold mb-2">Settings</h3>
+        <label class="form-label mt-2">Search engine
+          <input id="set-search" class="form-control form-control-sm mt-1" placeholder="https://duckduckgo.com/?q=" />
+        </label>
+        <label class="form-label mt-2">Home page
+          <input id="set-home" class="form-control form-control-sm mt-1" placeholder="https://example.com" />
+        </label>
+        <label class="form-label mt-2">User agent
+          <select id="set-ua" class="form-select form-select-sm mt-1">
+            <option value="default">Default</option>
+            <option value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36">Chrome Windows</option>
+            <option value="Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17 Safari/605.1.15">Safari Mac</option>
+            <option value="Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17 Mobile/15E148 Safari/604.1">iPhone Safari</option>
+          </select>
+        </label>
+        <div class="form-check mt-2">
+          <input class="form-check-input" type="checkbox" id="set-adblock">
+          <label class="form-check-label" for="set-adblock">Enable basic ad/tracker blocking</label>
+        </div>
+        <hr class="my-3">
+        <div class="form-check mt-2">
+          <input class="form-check-input" type="checkbox" id="set-ai-enabled">
+          <label class="form-check-label" for="set-ai-enabled">Enable Zylo AI</label>
+        </div>
+        <label class="form-label mt-2">AI model
+          <input id="set-ai-model" class="form-control form-control-sm mt-1" placeholder="llama3.1:8b"/>
+        </label>
+        <button id="save-settings" class="btn btn-outline-secondary btn-sm mt-2">Save</button>
+      </div>
+
+      <div class="panel p-3 hidden" id="panel-sync">
+        <h3 class="h6 fw-semibold mb-2">Sync</h3>
+        <p class="text-muted mb-3">Export/Import your <em>current profile</em> data (bookmarks, history, downloads, settings, permissions).</p>
+        <div class="d-flex align-items-center gap-2">
+          <button id="sync-export" class="btn btn-outline-secondary btn-sm">Export JSON</button>
+          <input type="file" id="sync-import-file" accept="application/json" class="form-control form-control-sm w-auto"/>
+          <button id="sync-import" class="btn btn-outline-secondary btn-sm">Import JSON</button>
+        </div>
+      </div>
+
+      <div class="panel p-3 hidden" id="panel-ai">
+        <h3 class="h6 fw-semibold mb-2">Zylo AI</h3>
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <select id="ai-model" class="form-select form-select-sm w-auto"></select>
+          <div class="form-check ms-2">
+            <input class="form-check-input" style="margin-top: 14px;" type="checkbox" id="ai-enabled">
+            <label class="form-check-label" for="ai-enabled">Enable</label>
+          </div>
+          <button id="ai-save" class="btn btn-outline-secondary btn-sm ms-auto">Save</button>
+        </div>
+
+        <div class="ai-chat d-flex flex-column border rounded-3">
+          <div id="ai-messages" class="flex-grow-1 overflow-auto p-3 bg-light"></div>
+          <div class="ai-input d-flex align-items-center gap-2 border-top p-2 bg-white" style="height:50px;">
+            <button id="ai-ask-page" class="btn btn-outline-secondary btn-sm" title="Ask about the current page’s content">
+              📰 Ask about page
+            </button>
+            <input id="ai-text" class="form-control form-control-sm" placeholder="Ask Zylo… (local Ollama)"/>
+            <button id="ai-send" class="btn btn-outline-secondary btn-sm">Send</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Webviews container -->
+    <main id="webviews" class="position-relative" style="height: calc(100vh - 160px);"></main>
+  </div>
+
+  <!-- Downloads Shelf -->
+  <footer id="downloads-shelf" class="hidden position-fixed start-0 end-0 bottom-0 border-top bg-white d-flex align-items-center gap-2 px-3" style="height:48px; z-index: 10000;">
+    <div id="downloads-list" class="flex-grow-1 d-flex gap-2 overflow-auto">
+      <!-- chips -->
+    </div>
+    <button id="downloads-hide" class="btn btn-outline-secondary btn-sm">Hide</button>
+  </footer>
+
+  <!-- Permission Modal (renderer-controlled) -->
+  <div id="perm-modal" class="modal d-none" tabindex="-1" style="display:block; background:rgba(0,0,0,.35);">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 id="perm-title" class="modal-title">This site wants permission</h5>
+          <!-- JS can still hide/show; close button not wired to Bootstrap JS to avoid conflicts -->
+          <button type="button" class="btn-close btn-outline-secondary" aria-label="Close" id="perm-deny-x"></button>
+        </div>
+        <div class="modal-body">
+          <p id="perm-desc" class="mb-2"></p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="perm-remember">
+            <label class="form-check-label" for="perm-remember">Remember this choice for this site</label>
+          </div>
+        </div>
+        <div class="modal-footer py-2">
+          <button id="perm-deny"  class="btn btn-outline-secondary btn-sm">Deny</button>
+          <button id="perm-allow" class="btn btn-outline-secondary btn-sm">Allow</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Find bar -->
+  <div id="findbar" class="hidden position-absolute end-3 top-0 bg-white border rounded p-2 d-flex align-items-center gap-2" style="right:12px; top:56px;">
+    <input id="findText" class="form-control form-control-sm" placeholder="Find in page…"/>
+    <button id="findPrev"  class="btn btn-outline-secondary btn-sm">↑</button>
+    <button id="findNext"  class="btn btn-outline-secondary btn-sm">↓</button>
+    <button id="findClose" class="btn btn-outline-secondary btn-sm">✕</button>
+  </div>
+
+  <script src="./renderer.js"></script>
+</body>
+</html>

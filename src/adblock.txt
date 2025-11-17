@@ -1,0 +1,10 @@
+||doubleclick.net^
+||googlesyndication.com^
+||google-analytics.com^
+||adservice.google.com^
+||facebook.com/tr^
+||scorecardresearch.com^
+||taboola.com^
+||criteo.com^
+||quantserve.com^
+||t.co/i/ads^

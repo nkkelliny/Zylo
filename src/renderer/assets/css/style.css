@@ -1,0 +1,145 @@
+* { box-sizing: border-box; }
+body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#111; }
+.toolbar { display:flex; gap:10px; align-items:center; padding:8px; border-bottom:1px solid #ddd; background:#f7f7f8; }
+.brand { font-weight:700; margin-right:6px; }
+.nav button, .actions button, #newTab, .panel-tabs button { padding:6px 8px; border:1px solid #ccc; background:#fff; border-radius:6px; cursor:pointer; }
+.addr { flex:1; display:flex; align-items:center; gap:8px; }
+#url { width:100%; padding:8px 10px; border-radius:6px; border:1px solid #ccc; }
+.muted { opacity:0.7; }
+
+.tabs { display:flex; align-items:center; gap:6px; padding:6px; border-bottom:1px solid #eee; background:#fafafa; }
+.tab { padding:6px 10px; border:1px solid #ccc; border-radius:6px; background:#fff; cursor:pointer; display:flex; align-items:center; gap:6px; }
+.tab.active { background:#e8f0ff; border-color:#8fb4ff; }
+.tab .close { opacity:0.6; }
+#webviews { position:relative; height: calc(100vh - 160px); }
+.webview-wrap { position:absolute; inset:0; display:none; }
+.webview-wrap.active { display:block; }
+
+#sidepanel { position:absolute; left:0; top:0px !important; bottom:0px !important; width:439px; background:#fff; border-right:1px solid #ddd; overflow:auto; z-index: 10000;}
+#sidepanel.hidden { display:none; }
+.panel-tabs { display:flex; gap:6px; padding:8px; border-bottom:1px solid #eee; position:sticky; top:0; background:#fff; }
+.panel { padding:10px;}
+.item { padding:6px 8px; border-bottom:1px solid #efefef; word-break: break-all; }
+.item a { color:#0b57d0; text-decoration:none; }
+
+#findbar { position:absolute; right:12px; top:56px; background:#fff; border:1px solid #ccc; border-radius:6px; padding:6px; display:flex; gap:6px; }
+.hidden { display:none !important; }
+label { display:block; margin:10px 0; }
+
+/* AI */
+.ai-row { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+.ai-chat { display:flex; flex-direction:column; height:60vh; border:1px solid #eee; border-radius:8px; }
+#ai-messages { flex:1; overflow:auto; padding:10px; background:#fafafa; }
+.ai-msg { margin:8px 0; padding:8px 10px; border-radius:8px; max-width:80%; word-wrap:break-word; }
+.ai-msg.user { background:#e8f0ff; border:1px solid #bcd2ff; align-self:flex-end; }
+.ai-msg.assistant { background:#fff; border:1px solid #ddd; }
+.ai-input { display:flex; gap:8px; border-top:1px solid #eee; padding:8px; background:#fff; height: 50px;}
+#ai-text { flex:1; padding:8px 10px; border:1px solid #ccc; border-radius:6px; }
+
+/* Downloads shelf */
+footer#downloads-shelf { position:fixed; left:0; right:0; bottom:0; height:48px; border-top:1px solid #ddd; background:#fff; display:flex; align-items:center; gap:10px; padding:6px 10px; }
+#downloads-list { flex:1; display:flex; gap:8px; overflow-x:auto; }
+.download-chip { border:1px solid #ccc; border-radius:999px; padding:4px 8px; display:flex; align-items:center; gap:6px; white-space:nowrap; }
+.progress { width:80px; height:6px; background:#eee; border-radius:6px; overflow:hidden; }
+.progress > span { display:block; height:100%; background:#8fb4ff; width:0%; }
+
+/* Modal (permissions) */
+.modal { position:fixed; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center; }
+.modal-card { background:#fff; border:1px solid #ddd; border-radius:10px; padding:16px; width:360px; }
+.modal-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:10px; }
+
+/* --- Tabs strip --- */
+#tabs {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;                 /* spacing between tabs */
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border, #e3e6ea);
+  background: var(--chrome, #f7f8fa);
+  overflow-x: auto;         /* scroll when too many tabs */
+  overflow-y: hidden;
+  white-space: nowrap;      /* keep tabs on one line */
+  scrollbar-width: thin;    /* Firefox */
+}
+
+/* optional: thinner scrollbar on WebKit (Chrome/Electron) */
+#tabs::-webkit-scrollbar { height: 8px; }
+#tabs::-webkit-scrollbar-thumb { background: #c6cbd3; border-radius: 8px; }
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 220px;         /* prevent super-wide tabs */
+  min-width: 120px;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px 8px 0 0;   /* tab look */
+  background: #e9edf2;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.04);
+}
+
+/* active tab raised + white */
+.tab.active {
+  background: #fff;
+  border-color: #d7dbe2;
+  box-shadow: 0 -1px 0 #fff, inset 0 -2px 0 #fff; /* blends into webview area */
+}
+
+.tab .title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* close button */
+.tab .close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-size: 14px;
+  line-height: 1;
+  width: 22px;
+  height: 22px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: #333;
+}
+.tab .close:hover {
+  background: rgba(0,0,0,0.06);
+}
+
+/* --- Webview containers: show only the active one --- */
+.webview-wrap { display: none; width: 100%; height: calc(100vh - 120px); }
+.webview-wrap.active { display: block; }
+
+footer#downloads-shelf { position:fixed; left:0; right:0; bottom:0; height:48px; border-top:1px solid #ddd; background:#fff; display:flex; align-items:center; gap:10px; padding:6px 10px; }
+#downloads-list { flex:1; display:flex; gap:8px; overflow-x:auto; }
+.download-chip { border:1px solid #ccc; border-radius:999px; padding:4px 8px; display:flex; align-items:center; gap:6px; white-space:nowrap; }
+.progress { width:80px; height:6px; background:#eee; border-radius:6px; overflow:hidden; }
+.progress > span { display:block; height:100%; background:#8fb4ff; width:0%; }
+.hidden { display:none !important; }
+
+/* Favicon in tabs */
+.tab-icon-wrapper {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.tab-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  object-fit: contain;
+}
+.tab-icon.fallback {
+  font-size: 12px;
+  opacity: 0.7;
+}
