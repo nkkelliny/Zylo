@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Zylo Browser – User Guide & Troubleshooting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background: #f7f7fa;
+      color: #222;
+    }
+    header {
+      background: linear-gradient(135deg, #0074d9, #4c7fff);
+      color: #fff;
+      padding: 1.5rem 2rem;
+    }
+    header h1 {
+      margin: 0 0 0.25rem 0;
+      font-size: 1.9rem;
+    }
+    header p {
+      margin: 0;
+      opacity: 0.9;
+    }
+    main {
+      max-width: 1000px;
+      margin: 1.5rem auto 3rem;
+      padding: 0 1rem;
+    }
+    h2 {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.4rem;
+      margin-top: 2rem;
+    }
+    h3 {
+      margin-top: 1.5rem;
+    }
+    code {
+      font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      background: #f1f1f4;
+      padding: 0.1rem 0.25rem;
+      border-radius: 3px;
+      font-size: 0.95em;
+    }
+    pre {
+      background: #1e1e1e;
+      color: #f1f1f1;
+      padding: 1rem;
+      overflow-x: auto;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+    .callout {
+      border-left: 4px solid #0074d9;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: #eef6ff;
+      font-size: 0.95rem;
+    }
+    .warn {
+      border-left-color: #e67e22;
+      background: #fff5e9;
+    }
+    .danger {
+      border-left-color: #e74c3c;
+      background: #ffecec;
+    }
+    ul, ol {
+      padding-left: 1.5rem;
+    }
+    .kbd {
+      display: inline-block;
+      padding: 0 0.4rem;
+      margin: 0 0.05rem;
+      border-radius: 4px;
+      background: #f1f1f4;
+      border: 1px solid #ddd;
+      font-size: 0.85em;
+      font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.4rem 0.6rem;
+      text-align: left;
+    }
+    th {
+      background: #f0f0f5;
+    }
+    a {
+      color: #0066cc;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .section-index {
+      background: #fff;
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      border: 1px solid #e2e2ea;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Zylo Browser – Instructions & Troubleshooting</h1>
+    <p>A desktop browser built with Electron, a local Express backend, profiles, downloads, permissions, and local AI assistant (Ollama).</p>
+  </header>
+
+  <main>
+    <section class="section-index">
+      <h2>Quick Index</h2>
+      <ul>
+        <li><a href="#overview">1. Overview</a></li>
+        <li><a href="#requirements">2. Requirements</a></li>
+        <li><a href="#install-run">3. Install & Run</a></li>
+        <li><a href="#ui-tour">4. UI Tour</a></li>
+        <li><a href="#profiles">5. Profiles</a></li>
+        <li><a href="#navigation">6. Navigation & Tabs</a></li>
+        <li><a href="#bookmarks-history">7. Bookmarks & History</a></li>
+        <li><a href="#downloads">8. Downloads</a></li>
+        <li><a href="#permissions">9. Permissions (Camera / Mic / Geo / Notifications)</a></li>
+        <li><a href="#settings">10. Settings</a></li>
+        <li><a href="#sync">11. Sync (Export/Import Profile)</a></li>
+        <li><a href="#ai">12. Zylo AI (Ollama)</a></li>
+        <li><a href="#shortcuts">13. Keyboard Shortcuts</a></li>
+        <li><a href="#troubleshooting">14. Troubleshooting (All Common Issues)</a></li>
+      </ul>
+    </section>
+
+    <h2 id="overview">1. Overview</h2>
+    <p>
+      Zylo is a desktop web browser built using Electron, with:
+    </p>
+    <ul>
+      <li>A main Electron process (<code>main.js</code>) for windows, downloads, and permissions.</li>
+      <li>A renderer UI (<code>renderer.js</code> + <code>index.html</code>) for tabs, panels, downloads shelf, and AI chat.</li>
+      <li>A local Express backend (<code>server.js</code>) for profiles, bookmarks, history, downloads, settings, permissions, and AI proxy.</li>
+      <li>A preload script (<code>preload.cjs</code>) bridging secure IPC between renderer and main.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Data Storage:</strong> Profiles, bookmarks, history, downloads, permissions, and settings are stored in a local JSON/DB file managed by <code>db.js</code>. 
+      Each profile is separate and can have its own browsing data.
+    </div>
+
+    <h2 id="requirements">2. Requirements</h2>
+    <ul>
+      <li><strong>Node.js</strong> (LTS recommended) and <strong>npm</strong>.</li>
+      <li><strong>Git</strong> (for cloning the repo, if applicable).</li>
+      <li><strong>Electron</strong> and dependencies (installed via <code>npm install</code>).</li>
+      <li><strong>Ollama</strong> installed and running locally on <code>http://localhost:11434</code> if you want Zylo AI.</li>
+    </ul>
+
+    <h2 id="install-run">3. Install & Run</h2>
+    <ol>
+      <li><strong>Clone or download</strong> the project (if from Git):<br>
+        <code>git clone &lt;your-zylo-repo-url&gt;</code>
+      </li>
+      <li><strong>Change into the directory</strong>:<br>
+        <code>cd zylo</code>
+      </li>
+      <li><strong>Install dependencies</strong>:<br>
+        <code>npm install</code>
+      </li>
+      <li><strong>Start the Express backend (dev)</strong>:<br>
+        <code>node src/server.js</code><br>
+        In packaged mode the backend is imported automatically by <code>main.js</code>.
+      </li>
+      <li><strong>Start Electron</strong>:<br>
+        <code>npm run start</code> (or your configured start script).  
+      </li>
+    </ol>
+
+    <div class="warn callout">
+      <strong>Note:</strong> For development, ensure <code>server.js</code> is running so the renderer can reach 
+      <code>http://localhost:3001</code>. In packaged builds, <code>startBackendIfPackaged()</code> imports <code>server.js</code> automatically.
+    </div>
+
+    <h2 id="ui-tour">4. UI Tour</h2>
+
+    <h3>4.1 Top Toolbar</h3>
+    <p>The toolbar contains navigation controls, address bar, profile selector, zoom controls, dev tools, AI, and menu.</p>
+    <ul>
+      <li><strong>Back / Forward</strong>: Navigate through history of the active tab.</li>
+      <li><strong>Reload / Stop</strong>: Reload the current page or stop loading.</li>
+      <li><strong>Address Bar</strong>:
+        <ul>
+          <li>Enter a full URL (<code>https://example.com</code>) or a search term.</li>
+          <li>If there is no protocol and it looks like a search, Zylo uses the configured search engine.</li>
+        </ul>
+      </li>
+      <li><strong>Lock Icon</strong>: Shows <code>🔒</code> for HTTPS, <code>⚠</code> for non-HTTPS, <code>⚪</code> if unknown.</li>
+      <li><strong>Profile Selector</strong>: Switch between profiles.</li>
+      <li><strong>Zoom Controls</strong>: <em>-</em>, <em>100%</em>, <em>+</em>.</li>
+      <li><strong>DevTools</strong>: Opens Chromium DevTools for debugging.</li>
+      <li><strong>New Window</strong>: Opens another Zylo window.</li>
+      <li><strong>AI Button</strong>: Opens the AI panel for Zylo AI.</li>
+      <li><strong>Menu Button</strong>: Shows/hides the left side panel.</li>
+    </ul>
+
+    <h3>4.2 Tabs Strip</h3>
+    <ul>
+      <li>Tabs are created dynamically by <code>renderer.js</code>.</li>
+      <li>Each tab shows an icon (favicon if available, otherwise 🌐) and the page title.</li>
+      <li>Use the <strong>+</strong> button or keyboard shortcut to open new tabs.</li>
+      <li>Close a tab via the <strong>×</strong> button or keyboard shortcut.</li>
+    </ul>
+
+    <h3>4.3 Side Panel</h3>
+    <p>Side panel contains multiple tabs:</p>
+    <ul>
+      <li><strong>Bookmarks</strong></li>
+      <li><strong>History</strong></li>
+      <li><strong>Downloads</strong></li>
+      <li><strong>Permissions</strong></li>
+      <li><strong>Settings</strong></li>
+      <li><strong>Sync</strong></li>
+      <li><strong>AI</strong></li>
+    </ul>
+
+    <h3>4.4 Downloads Shelf</h3>
+    <p>
+      At the bottom of the window, a <strong>Downloads Shelf</strong> shows active and recent downloads as chips with progress bars.
+      You can hide the shelf using the "Hide" button.
+    </p>
+
+    <h2 id="profiles">5. Profiles</h2>
+    <p>
+      Profiles are managed via the backend (<code>/api/profiles</code>) and are selected with the profile dropdown in the toolbar.
+      Each profile has its own settings, bookmarks, history, downloads, and permissions.
+    </p>
+
+    <h3>5.1 Switching Profiles</h3>
+    <ol>
+      <li>Click the profile dropdown in the toolbar.</li>
+      <li>Select a different profile.</li>
+      <li>The renderer calls <code>/api/profiles/activate</code> and then <code>window.native.switchProfile(id)</code>.</li>
+      <li>A new window is created for that profile and the old window is closed.</li>
+    </ol>
+
+    <h3>5.2 Creating Profiles</h3>
+    <p>
+      New profiles can be created via the API or UI (if you have a profile creation UI wired to <code>/api/profiles</code>).
+      New profiles copy the settings of the currently active one, but start with empty bookmarks/history/downloads/permissions.
+    </p>
+
+    <h2 id="navigation">6. Navigation & Tabs</h2>
+
+    <h3>6.1 Loading Pages</h3>
+    <ol>
+      <li>Click on the address bar.</li>
+      <li>Type a URL (e.g., <code>https://example.com</code>) or a search term.</li>
+      <li>Press <span class="kbd">Enter</span>.</li>
+      <li>Zylo will:
+        <ul>
+          <li>Use the configured search engine if it detects a search term.</li>
+          <li>Prepend <code>https://</code> if it looks like a domain.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h3>6.2 Tabs</h3>
+    <ul>
+      <li><strong>New tab:</strong> Click <strong>+</strong> or use the keyboard shortcut.</li>
+      <li><strong>Close tab:</strong> Click <strong>×</strong> on the tab or use the shortcut.</li>
+      <li><strong>Switch tab:</strong> Click on a tab; active tab is highlighted.</li>
+    </ul>
+
+    <h3>6.3 Find in Page</h3>
+    <ol>
+      <li>Click the "Find in page" button in the toolbar.</li>
+      <li>Type search text.</li>
+      <li>Use ↑ / ↓ buttons to navigate matches.</li>
+      <li>Close the find bar with the ✕ button.</li>
+    </ol>
+
+    <h2 id="bookmarks-history">7. Bookmarks & History</h2>
+
+    <h3>7.1 Bookmarks</h3>
+    <ul>
+      <li>Open the side panel &gt; <strong>Bookmarks</strong>.</li>
+      <li>Click "Add current tab" to bookmark the active page.</li>
+      <li>Bookmarks store title, URL, favicon, and timestamp.</li>
+      <li>Click a bookmark to open it, or "Delete" to remove it.</li>
+      <li>Keyboard shortcut: <span class="kbd">Ctrl</span>/<span class="kbd">Cmd</span> + <span class="kbd">D</span> to bookmark the current page.</li>
+    </ul>
+
+    <h3>7.2 History</h3>
+    <ul>
+      <li>Open the side panel &gt; <strong>History</strong>.</li>
+      <li>History shows a timestamp, title, URL, and favicon.</li>
+      <li>Click an entry to re-open it.</li>
+      <li>Click "Clear All" to remove the history for the active profile.</li>
+    </ul>
+
+    <h2 id="downloads">8. Downloads</h2>
+    <p>
+      Downloads are handled by Electron’s <code>will-download</code> event and recorded per profile in <code>profile.downloads</code>.
+    </p>
+
+    <h3>8.1 Starting a Download</h3>
+    <ul>
+      <li>From any page, click a download link (file, image, etc.).</li>
+      <li>The main process fires <code>will-download</code> and sends:
+        <ul>
+          <li><code>download-started</code> (with id, fileName, url, totalBytes)</li>
+          <li>Then <code>download-updated</code> for progress</li>
+          <li>Finally <code>download-done</code> when finished/cancelled/failed</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>8.2 Downloads Shelf (Live)</h3>
+    <ul>
+      <li>At the bottom of the window, the shelf shows active downloads as chips.</li>
+      <li>Each chip has:
+        <ul>
+          <li>File name</li>
+          <li>Status (percentage, done, cancelled, failed)</li>
+          <li>Progress bar</li>
+        </ul>
+      </li>
+      <li>Click "Hide" to temporarily hide the shelf (downloads continue).</li>
+    </ul>
+
+    <h3>8.3 Downloads Panel (History)</h3>
+    <ul>
+      <li>Open side panel &gt; <strong>Downloads</strong>.</li>
+      <li>Shows completed downloads from <code>/api/downloads</code>:
+        <ul>
+          <li>File name</li>
+          <li>State</li>
+          <li>Size</li>
+          <li>File path</li>
+          <li>Original URL</li>
+          <li>Timestamp</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2 id="permissions">9. Permissions (Camera / Microphone / Geolocation / Notifications)</h2>
+    <p>
+      Zylo intercepts permission requests from web content in <code>main.js</code> using <code>ses.setPermissionRequestHandler</code>.
+      It respects stored decisions per origin and presents a modal when a decision is needed.
+    </p>
+
+    <h3>9.1 How Permission Decisions Work</h3>
+    <ol>
+      <li>Site calls <code>navigator.geolocation.getCurrentPosition</code>, <code>getUserMedia</code>, or <code>Notification.requestPermission</code>.</li>
+      <li>Main process inspects <code>permission</code> and <code>details.mediaTypes</code> (for camera/mic).</li>
+      <li>Zylo checks the active profile’s stored permissions for that origin:
+        <ul>
+          <li>If <strong>allow/deny</strong> is stored, it uses that automatically.</li>
+          <li>If <strong>ask</strong>, it sends a <code>perm-request</code> event to the renderer.</li>
+        </ul>
+      </li>
+      <li>The renderer shows a <strong>Permissions Modal</strong> with “Allow” / “Deny” options and a “Remember this choice” checkbox.</li>
+      <li>Once the user chooses:
+        <ul>
+          <li>Renderer sends <code>perm-respond</code> with decision.</li>
+          <li>Main process persists the decision and calls <code>callback(true/false)</code>.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h3>9.2 Permissions Panel</h3>
+    <ul>
+      <li>Open side panel &gt; <strong>Permissions</strong>.</li>
+      <li>Shows:
+        <ul>
+          <li><strong>Current site</strong> origin and dropdowns for:
+            <ul>
+              <li>Camera</li>
+              <li>Microphone</li>
+              <li>Geolocation</li>
+              <li>Notifications</li>
+            </ul>
+          </li>
+          <li>Buttons:
+            <ul>
+              <li><strong>Save for this site</strong> – writes decisions via <code>/api/permissions/set</code>.</li>
+              <li><strong>Reset this site</strong> – sets all to <code>ask</code>.</li>
+              <li><strong>Reset all</strong> – clears all decisions for the profile.</li>
+            </ul>
+          </li>
+          <li><strong>Saved origins list</strong> – read-only summary of stored decisions.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2 id="settings">10. Settings</h2>
+    <ul>
+      <li>Open side panel &gt; <strong>Settings</strong>.</li>
+      <li>Options:
+        <ul>
+          <li><strong>Search engine</strong> – base URL used for search queries.</li>
+          <li><strong>Home page</strong> – default URL for the home button.</li>
+          <li><strong>User agent</strong> – choose default or a specific UA string.</li>
+          <li><strong>Adblock toggle</strong> – enable minimal ad/tracker blocking (via <code>adblock.txt</code> rules).</li>
+          <li><strong>AI enabled</strong> – turn Zylo AI on/off.</li>
+          <li><strong>AI model</strong> – default model name (e.g., <code>llama3.1:8b</code>).</li>
+        </ul>
+      </li>
+      <li>Click <strong>Save</strong> to persist settings and apply user-agent change.</li>
+    </ul>
+
+    <h2 id="sync">11. Sync (Export/Import Profile)</h2>
+    <ul>
+      <li>Open side panel &gt; <strong>Sync</strong>.</li>
+      <li><strong>Export JSON:</strong> Downloads a JSON export of the <em>current profile</em> data (bookmarks, history, downloads, settings, permissions).</li>
+      <li><strong>Import JSON:</strong> Choose a JSON file and click Import to load it as a new profile (depending on your backend logic).</li>
+    </ul>
+
+    <h2 id="ai">12. Zylo AI (Ollama)</h2>
+    <ul>
+      <li>Open side panel &gt; <strong>AI</strong>.</li>
+      <li>Select a model from the dropdown (fetched from <code>/api/ai/models</code>).</li>
+      <li>Toggle “Enable” to turn AI on.</li>
+      <li>Click <strong>Save</strong> to persist AI settings.</li>
+      <li>In the chat area:
+        <ul>
+          <li>Type a question and click <strong>Send</strong>.</li>
+          <li>Click <strong>Ask about page</strong> to send the current page’s text to Zylo AI for summarization.</li>
+        </ul>
+      </li>
+      <li>Backend proxies chat to Ollama at <code>http://localhost:11434/api/chat</code>.</li>
+    </ul>
+
+    <div class="warn callout">
+      <strong>If AI doesn’t respond:</strong> Make sure Ollama is installed, running, and that the model (e.g. <code>llama3.1:8b</code>) is downloaded and available.
+    </div>
+
+    <h2 id="shortcuts">13. Keyboard Shortcuts</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Shortcut</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="kbd">Ctrl</span>/<span class="kbd">Cmd</span> + <span class="kbd">D</span></td>
+          <td>Add bookmark for the current page</td>
+        </tr>
+        <tr>
+          <td><span class="kbd">Ctrl</span>/<span class="kbd">Cmd</span> + <span class="kbd">L</span></td>
+          <td>Focus address bar</td>
+        </tr>
+        <tr>
+          <td><span class="kbd">Ctrl</span>/<span class="kbd">Cmd</span> + <span class="kbd">T</span></td>
+          <td>New tab</td>
+        </tr>
+        <tr>
+          <td><span class="kbd">Ctrl</span>/<span class="kbd">Cmd</span> + <span class="kbd">W</span></td>
+          <td>Close current tab</td>
+        </tr>
+        <tr>
+          <td><span class="kbd">Ctrl</span>/<span class="kbd">Cmd</span> + <span class="kbd">R</span></td>
+          <td>Reload current tab (ignoring cache)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="troubleshooting">14. Troubleshooting (Common Issues & Fixes)</h2>
+
+    <h3>14.1 App Doesn’t Start / Window Doesn’t Open</h3>
+    <ul>
+      <li><strong>Check Node/Electron version:</strong> Use a recent LTS version of Node.js.</li>
+      <li><strong>Check console output:</strong>
+        <ul>
+          <li>Run <code>npm start</code> from a terminal and look for errors.</li>
+          <li>Common issues:
+            <ul>
+              <li>Missing dependencies – run <code>npm install</code> again.</li>
+              <li>Port 3001 already in use – another process may be using it.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Backend not starting in packaged mode:</strong>
+        <ul>
+          <li>Make sure <code>startBackendIfPackaged()</code> in <code>main.js</code> is correctly importing <code>./server.js</code>.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>14.2 Blank Window / White Screen</h3>
+    <ul>
+      <li><strong>Check DevTools:</strong> Press <span class="kbd">Ctrl</span>/<span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">I</span> or click the DevTools icon to view console errors.</li>
+      <li><strong>Backend not reachable:</strong>
+        <ul>
+          <li>Open DevTools &gt; Console, look for failed <code>http://localhost:3001</code> requests.</li>
+          <li>Ensure <code>server.js</code> is running (in dev) or started (in packaged).</li>
+        </ul>
+      </li>
+      <li><strong>Path issues in packaged app:</strong> Ensure <code>index.html</code> and assets paths are correct.</li>
+    </ul>
+
+    <h3>14.3 Address Bar or Inputs Don’t Accept Keyboard Input</h3>
+    <p>
+      Sometimes focus can get “stuck” in Electron or Chromium, especially after DevTools usage or window focus changes.
+    </p>
+    <ul>
+      <li><strong>Try these steps:</strong>
+        <ol>
+          <li>Click directly into the input field (e.g., URL bar) and try typing again.</li>
+          <li><strong>Minimize the Zylo window and restore it.</strong>  
+              This often forces the OS to refresh focus and fixes keyboard input issues.</li>
+          <li>Switch to another app, then back to Zylo.</li>
+          <li>Close and re-open the side panel if it’s covering part of the window.</li>
+          <li>If that fails, close and reopen Zylo.</li>
+        </ol>
+      </li>
+      <li><strong>DevTools active:</strong> If DevTools is focused, keyboard input may go there instead of the page:
+        <ul>
+          <li>Click back on the page or the address bar.</li>
+          <li>Close DevTools if you don’t need it.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>14.4 Pages Won’t Load / No Internet</h3>
+    <ul>
+      <li><strong>Check your system network:</strong>
+        <ul>
+          <li>Open any external browser (Chrome, Safari, Edge) and see if websites load.</li>
+        </ul>
+      </li>
+      <li><strong>Check URL:</strong>
+        <ul>
+          <li>Make sure you’re using a valid URL (e.g., <code>https://example.com</code>).</li>
+          <li>If you entered an IP or local hostname, ensure your network can reach it.</li>
+        </ul>
+      </li>
+      <li><strong>Adblock interference:</strong>
+        <ul>
+          <li>If some scripts/resources are blocked, disable adblock in Settings and try again.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>14.5 Side Panel Doesn’t Open / Nothing Shows in Panels</h3>
+    <ul>
+      <li><strong>Click the Menu button:</strong> Ensure the side panel is not hidden.</li>
+      <li><strong>No data:</strong>
+        <ul>
+          <li>If bookmarks/history/downloads are empty, it may simply be because you haven’t visited or downloaded anything yet.</li>
+        </ul>
+      </li>
+      <li><strong>Backend not reachable:</strong>
+        <ul>
+          <li>If <code>/api/bookmarks</code> or <code>/api/history</code> calls fail, make sure <code>server.js</code> is running.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>14.6 Downloads Don’t Start / No Chips on Shelf</h3>
+    <ul>
+      <li><strong>Check DevTools Console:</strong>
+        <ul>
+          <li>See if any errors appear when clicking a download link.</li>
+        </ul>
+      </li>
+      <li><strong>Check context menu:</strong>
+        <ul>
+          <li>Right-click an image or link and choose “Save Image As…” or “Open link in new tab” then try download.</li>
+        </ul>
+      </li>
+      <li><strong>Ensure <code>will-download</code> is firing:</strong>
+        <ul>
+          <li>In <code>main.js</code>, verify that the <code>ses.on('will-download')</code> handler is wired for the session you’re using.</li>
+        </ul>
+      </li>
+      <li><strong>Check file permissions:</strong>
+        <ul>
+          <li>If your OS blocks access to the default download folder, choose a different directory (OS dialog).</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>14.7 Downloads Missing from Downloads Panel</h3>
+    <ul>
+      <li><strong>Check that downloads are being persisted:</strong>
+        <ul>
+          <li>After a download finishes, <code>main.js</code> writes to <code>profile.downloads</code> via <code>db.js</code>.</li>
+        </ul>
+      </li>
+      <li><strong>Refresh the Downloads panel:</strong>
+        <ul>
+          <li>Click away to another panel (e.g., Bookmarks) and back to Downloads to trigger <code>refreshDownloads()</code>.</li>
+        </ul>
+      </li>
+      <li><strong>Profile mismatch:</strong>
+        <ul>
+          <li>Make sure you’re looking at the same profile that initiated the downloads.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>14.8 Permissions Modal Doesn’t Show</h3>
+    <ul>
+      <li><strong>It might have an existing decision:</strong>
+        <ul>
+          <li>If a decision for that origin and permission was already saved, Zylo will auto-allow/deny and not show UI.</li>
+          <li>Open <strong>Permissions</strong> panel and reset the site or all sites.</li>
+        </ul>
+      </li>
+      <li><strong>Check IPC wiring:</strong>
+        <ul>
+          <li>Ensure <code>onPermissionRequest</code> is correctly wired in <code>preload.cjs</code> and <code>renderer.js</code>.</li>
+        </ul>
+      </li>
+      <li><strong>Check origin:</strong>
+        <ul>
+          <li>If the origin is <code>about:blank</code> or invalid, it may be rejected by your logic.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>14.9 Permissions Always Denied / Camera/Mic Not Working</h3>
+    <ul>
+      <li><strong>Reset permissions:</strong>
+        <ul>
+          <li>Open Permissions panel &gt; “Reset this site” or “Reset all”.</li>
+        </ul>
+      </li>
+      <li><strong>Check OS-level settings:</strong>
+        <ul>
+          <li>On macOS or Windows, check Privacy & Security settings to ensure camera/mic access is allowed for the app.</li>
+        </ul>
+      </li>
+      <li><strong>HTTPS only:</strong>
+        <ul>
+          <li>Some APIs (like geolocation) may require secure origins; ensure using <code>https://</code> when applicable.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>14.10 AI Not Working / “AI unavailable. Is Ollama running?”</h3>
+    <ul>
+      <li><strong>Check Ollama:</strong>
+        <ul>
+          <li>Run <code>ollama list</code> in a terminal – ensure your model (e.g., <code>llama3.1:8b</code>) is installed.</li>
+          <li>Make sure the Ollama daemon is running.</li>
+        </ul>
+      </li>
+      <li><strong>Check backend:</strong>
+        <ul>
+          <li>Backend calls <code>http://localhost:11434/api/chat</code>. If port differs, update <code>server.js</code>.</li>
+        </ul>
+      </li>
+      <li><strong>AI disabled in settings:</strong>
+        <ul>
+          <li>Open Settings &gt; ensure “Enable Zylo AI” is checked, and a valid model name is set.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>14.11 Profile Corruption / Strange Data</h3>
+    <ul>
+      <li><strong>Export profile:</strong>
+        <ul>
+          <li>Use Sync &gt; Export JSON to back up the current profile.</li>
+        </ul>
+      </li>
+      <li><strong>Create a new profile:</strong>
+        <ul>
+          <li>Create a fresh profile to see if issues reproduce.</li>
+        </ul>
+      </li>
+      <li><strong>Inspect database file:</strong>
+        <ul>
+          <li>If comfortable, open your DB/JSON file and check for malformed entries.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>14.12 Adblock Breaking Sites</h3>
+    <ul>
+      <li><strong>Disable adblock in Settings:</strong>
+        <ul>
+          <li>If a site behaves strangely or key scripts don’t load, try disabling adblock and reloading.</li>
+        </ul>
+      </li>
+      <li><strong>Edit adblock rules:</strong>
+        <ul>
+          <li>Remove or adjust entries in <code>adblock.txt</code> that are too broad or blocking critical resources.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>14.13 General “Something Feels Off” Steps</h3>
+    <ol>
+      <li><strong>Minimize & restore</strong> the Zylo window (especially when keyboard input acts weird).</li>
+      <li>Close DevTools if you don’t need it and re-focus the main page.</li>
+      <li>Toggle the side panel off and on again.</li>
+      <li>Close and re-open Zylo.</li>
+      <li>Try another profile to check if the issue is profile-specific.</li>
+    </ol>
+
+    <div class="callout">
+      <strong>Still stuck?</strong>  
+      Open DevTools &gt; Console, capture the error messages, and investigate or share them when asking for help.  
+      The logs will usually point to <code>server.js</code>, <code>main.js</code>, or <code>renderer.js</code> as the source.
+    </div>
+  </main>
+</body>
+</html>
