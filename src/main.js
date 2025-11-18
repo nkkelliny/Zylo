@@ -104,6 +104,13 @@ async function createWindow({ incognito = false } = {}) {
   })
   mainWindow = win
 
+  // If the main window's own webContents tries to open a new window
+  win.webContents.setWindowOpenHandler(({ url }) => {
+    // Forward to renderer to open as tab
+    win.webContents.send('open-url-in-new-tab', url)
+    return { action: 'deny' } // don't create a real OS window
+  })
+
   const ses = win.webContents.session
 
   // --- Minimal adblock (demo) ---

@@ -300,6 +300,16 @@ function attachWebviewEvents(id) {
     }
   })
 
+   // 🔹 Handle links that want a new window/tab
+  wv.addEventListener('new-window', (e) => {
+    // e.url is the requested URL
+    e.preventDefault()  // prevent Electron from spawning a separate window
+    if (!e.url) return
+
+    // Open as a Zylo tab instead
+    createTab(e.url)
+  })
+
   wv.addEventListener('did-start-loading', () => $('#reload').textContent = '↻')
   wv.addEventListener('did-stop-loading',  () => $('#reload').textContent = '↻')
 
@@ -521,7 +531,7 @@ async function refreshBookmarks() {
           ${renderFaviconHtml(b.favicon, b.url)}
           <a href="#" data-url="${b.url}" class="open">${b.title}</a>
         </div>
-        <button class="del btn btn-outline-secondary btn-sm" data-id="${b.id}">Delete</button>
+        <button class="del btn btn-outline-danger btn-sm" data-id="${b.id}"><i class="bi bi-trash-fill"></i></button>
       </div>
     `).join('') +
     `<button id="add-bm" class="btn btn-outline-secondary btn-sm mt-2">Add current tab</button>`
