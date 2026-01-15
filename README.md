@@ -5,6 +5,8 @@ Zylo Browser
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Version](https://img.shields.io/badge/version-1.0.0-orange.svg)
 
+<img src="https://github.com/Actividea/Zylo/blob/main/src/renderer/assets/zylo_browser_screenshot.jpg">
+
 Zylo is a desktop web browser built with **Electron**, **Node.js**, and an integrated **Express.js** backend. It provides multi-profile browsing, bookmarks, history, a live downloads shelf, fine-grained site permissions (camera, microphone, geolocation, notifications), and an optional AI assistant powered by **Ollama**.
 
 *   _Currently supports Linux, Mac, and Windows environments._
